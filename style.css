@@ -1,0 +1,21 @@
+.root{
+
+}
+
+body{
+  background-image: url(img/green-whool.jpg);
+flex: display;
+
+}
+
+section{
+width: 634px;  
+}
+
+.card{
+  background-image: url(img/card-back3.png);
+  height: 200px;
+  width: 146px;
+  float: left;
+  margin: 5px;
+}
