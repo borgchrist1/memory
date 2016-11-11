@@ -48,16 +48,15 @@ function mixCards(cards){
 
 
 function putCardsOnTable(cards){
-
   for (var i = 0; i < cards.length; i++) {
-  //  document.querySelector('section');
-  //  let img = document.createElement('img');
-  //  img.src = cards[i].cardBack;
-  //  content.appendChild(img);
-  console.log(cards[i].cardBack);
+    let imgBack = document.createElement('img');
+    var cv = document.querySelector("body");
+  imgBack.src = cards[i].cardBack;
+  cv.appendChild(imgBack);
+  console.log(imgBack.src);
   }
-
 }
+
 
 function checkForPair(){
 
