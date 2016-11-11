@@ -8,7 +8,7 @@ let cards = [];
 function creatCard(cardImg, cardBack, pair){
   let card = {};
   card.cardImg = '';
-  card.cardBack = 'back';
+  card.cardBack = 'img/card-back3.png';
   card.pair = false;
   cards.push(card);
 
@@ -43,11 +43,19 @@ function mixCards(cards){
     let j = Math.floor(Math.random() * i);
     [cards[i - 1], cards[j]] = [cards[j], cards[i - 1]];
   }
-
+  putCardsOnTable(cards);
 }
 
 
 function putCardsOnTable(cards){
+
+  for (var i = 0; i < cards.length; i++) {
+  //  document.querySelector('section');
+  //  let img = document.createElement('img');
+  //  img.src = cards[i].cardBack;
+  //  content.appendChild(img);
+  console.log(cards[i].cardBack);
+  }
 
 }
 
