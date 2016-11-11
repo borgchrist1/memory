@@ -50,18 +50,26 @@ function mixCards(cards){
 function putCardsOnTable(cards){
   for (var i = 0; i < cards.length; i++) {
     let imgBack = document.createElement('img');
-    var cv = document.querySelector("body");
-  imgBack.src = cards[i].cardBack;
-  cv.appendChild(imgBack);
-  console.log(imgBack.src);
+    var section = document.querySelector("section");
+    imgBack.src = cards[i].cardBack;
+    section.appendChild(imgBack);
+  }
+
+}
+
+function game(){
+  var x = document.querySelectorAll('img');
+  for (var i = 0; i < x.length; i++) {
+  x[i].addEventListener('click', function(event) {
+    console.log('bild');
+    //skapa array. med 2 platser. checkForPair(). om par spara i ny array.
+    //om array full spel slut annars forsatt.
+      });
   }
 }
 
-
-function checkForPair(){
-
+function checkForPair(array){
 
 }
 
 numberOfCards(6);
-console.log(cards);
