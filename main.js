@@ -12,7 +12,7 @@ let checkPair = [];
 function creatCard(cardImg, cardBack, value, cardId){
   let card = {};
   card.cardImg = '';
-  card.cardBack = 'img/card-back3.png';
+  card.cardBack = '';
   card.value = '';
   card.cardId = '';
   cards.push(card);
@@ -39,6 +39,8 @@ function addValues(cards, newCards){
     }
     cards[i].value = value;
     cards[i].cardId = i+1;
+    cards[i].cardBack = 'img/card-back3.png'
+    cards[i].cardImg = "img/card-img-" + value + "jpg"
   }
   mixCards(cards);
 }
@@ -55,6 +57,7 @@ function mixCards(cards){
 function putCardsOnTable(cards){
   for (var i = 0; i < cards.length; i++) {
     let imgBack = document.createElement('img');
+    let div = document.createElement('div');
     var section = document.querySelector("section");
     imgBack.setAttribute('data-value', cards[i].value);
     imgBack.src = cards[i].cardBack;
@@ -80,7 +83,12 @@ function game(){
 
 function onClick(event){
 let cardValue = event.toElement.dataset.value;
+//console.log(event);
+let x = event.target.id;
+//let y = document.getElementById(x);
+//y.src = '#';
 checkPair.push(cardValue);
+console.log(x);
 console.log('click');
 game();
 }
@@ -90,8 +98,8 @@ function checkForPair(checkPair){
 console.log(checkPair);
 if (checkPair[0] === checkPair[1]) {
   console.log('Par');
-  let x = 'pair';
-  pair.push(pair);
+  let newPair = 'pair';
+  pair.push(newPair);
   if (pair.length === 3) {
     alert('You won!');
   }
