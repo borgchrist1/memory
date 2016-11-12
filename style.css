@@ -9,7 +9,12 @@ flex: display;
 }
 
 section{
-width: 634px;  
+width: 634px;
+}
+
+div{
+  float: left;
+  margin: 5px;
 }
 
 .card{
