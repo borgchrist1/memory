@@ -2,18 +2,19 @@
 let cardImg;
 let cardBack;
 let value;
+let cardId;
 let cards = [];
 let pair = [];
 let checkPair = [];
 
 
 
-function creatCard(cardImg, cardBack, value){
+function creatCard(cardImg, cardBack, value, cardId){
   let card = {};
   card.cardImg = '';
   card.cardBack = 'img/card-back3.png';
-  card.pair = false;
   card.value = '';
+  card.cardId = '';
   cards.push(card);
 
 }
@@ -22,7 +23,7 @@ function creatCard(cardImg, cardBack, value){
 
 function numberOfCards(newCards){
   for (var i = 0; i < newCards; i++) {
-    creatCard(cardImg, cardBack, value);
+    creatCard(cardImg, cardBack, value, cardId);
   }
   addValues(cards, newCards);
 }
@@ -37,7 +38,7 @@ function addValues(cards, newCards){
       value = 1;
     }
     cards[i].value = value;
-
+    cards[i].cardId = i+1;
   }
   mixCards(cards);
 }
@@ -57,15 +58,13 @@ function putCardsOnTable(cards){
     var section = document.querySelector("section");
     imgBack.setAttribute('data-value', cards[i].value);
     imgBack.src = cards[i].cardBack;
+    imgBack.setAttribute('id', cards[i].cardId);
     section.appendChild(imgBack);
   }
   game();
 }
 
 function game(){
-// if(checkPair.length > 2){
-//   checkPair = [];
-// }
  if(checkPair.length < 2) {
   let playerClicks = document.querySelectorAll('img');
   playerClicks.forEach(function(playerClick){
@@ -91,6 +90,11 @@ function checkForPair(checkPair){
 console.log(checkPair);
 if (checkPair[0] === checkPair[1]) {
   console.log('Par');
+  let x = 'pair';
+  pair.push(pair);
+  if (pair.length === 3) {
+    alert('You won!');
+  }
 }else {
   console.log('inte par');
 }
