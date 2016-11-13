@@ -5,6 +5,7 @@ let value;
 let cardId;
 let cards = [];
 let pair = [];
+let cardsFlipped = [];
 let checkPair = [];
 
 
@@ -102,20 +103,36 @@ function onClick(event){
   let cardValue = event.toElement.dataset.value;
   let x = event.target.id;
   let y = document.getElementById(x);
+  cardsFlipped.push(x);
+  console.log(cardsFlipped);
   let z = document.getElementById("card" + x);
   let v = z.querySelector('.card');
   v.className += ' flipped';
-  // event = document.querySelector('.card');
-  // event.className += ' flipped';
-  v.addEventListener('mouseleave', (a) => {
-      var g = document.querySelector('.card');
-      g.className = 'card';
-  });
+  checkPair.push(cardValue);
 
+  if (cardsFlipped.length === 2) {
+    if (checkPair[0] !== checkPair[1] ) {
+setTimeout(function () {
+
+      let q = document.getElementById("card" + cardsFlipped[0]);
+      let w = q.querySelector('.card');
+      w.className = 'card';
+
+      let card2 = document.getElementById("card" + cardsFlipped[1]);
+      let card12 = card2.querySelector('.card');
+      card12.className = 'card';
+cardsFlipped = [];
+    }, 1000);
+
+    }
+if (checkPair[0] === checkPair[1]) {
+cardsFlipped = [];
+}
+  }
   // TODO
   //get id to check that it is not the same card agin
-  //add flipp on cards
-  checkPair.push(cardValue);
+  
+
   console.log(x);
   console.log('click');
   game();
@@ -123,7 +140,7 @@ function onClick(event){
 
 
 function checkForPair(checkPair){
-  console.log(checkPair);
+  //console.log(checkPair);
   if (checkPair[0] === checkPair[1]) {
     console.log('Par');
     let newPair = 'pair';
