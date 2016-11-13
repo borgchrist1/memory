@@ -5,6 +5,7 @@ let value;
 let cardId;
 let cards = [];
 let pair = [];
+let cardsFlipped = [];
 let checkPair = [];
 
 
@@ -40,8 +41,8 @@ function addValues(cards, newCards){
     }
     cards[i].value = value;
     cards[i].cardId = i+1;
-    cards[i].cardBack = 'img/card-back3.png'
-    cards[i].cardImg = "url('img/card-img-" + value + ".jpg')"
+    cards[i].cardBack = 'img/card-back-4.jpg';
+    cards[i].cardImg = "img/card-img-" + value + ".jpg";
   }
   mixCards(cards);
 }
@@ -58,23 +59,43 @@ function mixCards(cards){
 function putCardsOnTable(cards){
   for (var i = 0; i < cards.length; i++) {
     let imgBack = document.createElement('img');
-    let div = document.createElement('div');
+    let imgFront = document.createElement('img');
+    let divFlip = document.createElement('div');
+    let divCard = document.createElement('div');
+    let divFront = document.createElement('div');
+    let divBack = document.createElement('div');
     var section = document.querySelector("section");
-    imgBack.setAttribute('data-value', cards[i].value);
-    imgBack.src = cards[i].cardBack;
-    imgBack.setAttribute('id', cards[i].cardId);
-    section.appendChild(div);
-    div.appendChild(imgBack);
+    imgFront.setAttribute('data-value', cards[i].value);
+    imgBack.src = cards[i].cardImg;
+    imgFront.src = cards[i].cardBack;
+    imgFront.setAttribute('id', cards[i].cardId);
+    divFlip.setAttribute('id', "card" + cards[i].cardId);
+    //divFront.setAttribute('id', cards[i].cardId);
+    divFlip.className = 'flip';
+    divCard.className = 'card';
+    divFront.className = 'face front';
+    divBack.className = 'face back';
+    section.appendChild(divFlip);
+    divFlip.appendChild(divCard);
+    divCard.appendChild(divFront);
+    divCard.appendChild(divBack);
+    divFront.appendChild(imgFront);
+    divBack.appendChild(imgBack);
   }
   game();
 }
 
 function game(){
   if(checkPair.length < 2) {
-    let playerClicks = document.querySelectorAll('img');
-    playerClicks.forEach(function(playerClick){
+    let playerClicks = document.querySelectorAll('.flip');
+    playerClicks.forEach((playerClick)=>{
+
       playerClick.addEventListener('click', onClick);
     });
+    // for (var i = 0; i < playerClicks.length; i++) {
+    // console.log(playerClicks[i]);
+    //   .addEventListener('click', onClick);
+    // }
   } else {
     checkForPair(checkPair);
     checkPair = [];
@@ -85,14 +106,38 @@ function game(){
 
 function onClick(event){
   let cardValue = event.toElement.dataset.value;
-  //console.log(event);
   let x = event.target.id;
   let y = document.getElementById(x);
+  cardsFlipped.push(x);
+  console.log(cardsFlipped);
+  let z = document.getElementById("card" + x);
+  let v = z.querySelector('.card');
+  v.className += ' flipped';
+  checkPair.push(cardValue);
 
+  if (cardsFlipped.length === 2) {
+    if (checkPair[0] !== checkPair[1] ) {
+      setTimeout(function () {
+
+        let q = document.getElementById("card" + cardsFlipped[0]);
+        let w = q.querySelector('.card');
+        w.className = 'card';
+
+        let card2 = document.getElementById("card" + cardsFlipped[1]);
+        let card12 = card2.querySelector('.card');
+        card12.className = 'card';
+        cardsFlipped = [];
+      }, 1000);
+
+    }
+    if (checkPair[0] === checkPair[1]) {
+      cardsFlipped = [];
+    }
+  }
   // TODO
   //get id to check that it is not the same card agin
-  //add flipp on cards
-  checkPair.push(cardValue);
+
+
   console.log(x);
   console.log('click');
   game();
@@ -100,13 +145,15 @@ function onClick(event){
 
 
 function checkForPair(checkPair){
-  console.log(checkPair);
+  //console.log(checkPair);
   if (checkPair[0] === checkPair[1]) {
     console.log('Par');
     let newPair = 'pair';
     pair.push(newPair);
     if (pair.length === 3) {
+setTimeout(function () {
       gameOver();
+        }, 1000);
     }
   }else {
     console.log('inte par');

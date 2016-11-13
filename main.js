@@ -41,7 +41,7 @@ function addValues(cards, newCards){
     }
     cards[i].value = value;
     cards[i].cardId = i+1;
-    cards[i].cardBack = 'img/card-back3.png';
+    cards[i].cardBack = 'img/card-back-4.jpg';
     cards[i].cardImg = "img/card-img-" + value + ".jpg";
   }
   mixCards(cards);
@@ -87,10 +87,16 @@ function putCardsOnTable(cards){
 
 function game(){
   if(checkPair.length < 2) {
-    let playerClicks = document.querySelectorAll('.flip');
-    playerClicks.forEach(function(playerClick){
-      playerClick.addEventListener('click', onClick);
-    });
+
+let playerClicks = document.querySelectorAll('.flip');
+// .forEach((playerClick)=>{
+// console.log(playerClick);
+//       playerClick.addEventListener('click', onClick);
+//     });
+    for (var i = 0; i < playerClicks.length; i++) {
+    console.log(playerClicks[i]);
+      playerClicks[i].addEventListener('click', onClick);
+    }
   } else {
     checkForPair(checkPair);
     checkPair = [];
@@ -100,7 +106,8 @@ function game(){
 
 
 function onClick(event){
-  let cardValue = event.toElement.dataset.value;
+console.log(event);
+  let cardValue = event.target.dataset.value;
   let x = event.target.id;
   let y = document.getElementById(x);
   cardsFlipped.push(x);
@@ -112,26 +119,26 @@ function onClick(event){
 
   if (cardsFlipped.length === 2) {
     if (checkPair[0] !== checkPair[1] ) {
-setTimeout(function () {
+      setTimeout(function () {
 
-      let q = document.getElementById("card" + cardsFlipped[0]);
-      let w = q.querySelector('.card');
-      w.className = 'card';
+        let q = document.getElementById("card" + cardsFlipped[0]);
+        let w = q.querySelector('.card');
+        w.className = 'card';
 
-      let card2 = document.getElementById("card" + cardsFlipped[1]);
-      let card12 = card2.querySelector('.card');
-      card12.className = 'card';
-cardsFlipped = [];
-    }, 1000);
+        let card2 = document.getElementById("card" + cardsFlipped[1]);
+        let card12 = card2.querySelector('.card');
+        card12.className = 'card';
+        cardsFlipped = [];
+      }, 1000);
 
     }
-if (checkPair[0] === checkPair[1]) {
-cardsFlipped = [];
-}
+    if (checkPair[0] === checkPair[1]) {
+      cardsFlipped = [];
+    }
   }
   // TODO
   //get id to check that it is not the same card agin
-  
+
 
   console.log(x);
   console.log('click');
@@ -146,7 +153,9 @@ function checkForPair(checkPair){
     let newPair = 'pair';
     pair.push(newPair);
     if (pair.length === 3) {
+setTimeout(function () {
       gameOver();
+        }, 1000);
     }
   }else {
     console.log('inte par');

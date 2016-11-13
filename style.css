@@ -9,7 +9,7 @@ flex: display;
 }
 
 section{
-width: 634px;
+margin: 0 auto;
 }
 
 .flip {
@@ -17,9 +17,9 @@ width: 634px;
    width: 146px;
    height: 200px;
     position: relative;
-    margin: 50px auto;
+    margin: 25px auto;
     float: left;
-    margin-right: 5px;
+    margin-right: 25px;
 }
 .flip .card.flipped {
   -webkit-transform: rotatex(-180deg);
