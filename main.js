@@ -64,7 +64,8 @@ function putCardsOnTable(cards){
     let divCard = document.createElement('div');
     let divFront = document.createElement('div');
     let divBack = document.createElement('div');
-    var section = document.querySelector("section");
+    let section = document.querySelector("section");
+    let gameBoard = section.querySelector('.game-board');
     imgFront.setAttribute('data-value', cards[i].value);
     imgBack.src = cards[i].cardImg;
     imgFront.src = cards[i].cardBack;
@@ -75,7 +76,7 @@ function putCardsOnTable(cards){
     divCard.className = 'card';
     divFront.className = 'face front';
     divBack.className = 'face back';
-    section.appendChild(divFlip);
+    gameBoard.appendChild(divFlip);
     divFlip.appendChild(divCard);
     divCard.appendChild(divFront);
     divCard.appendChild(divBack);
@@ -137,7 +138,7 @@ console.log(event);
     }
   }
   // TODO
-  //get id to check that it is not the same card agin
+  //fix problem with card when clicked and turnd
 
 
   console.log(x);
@@ -152,8 +153,10 @@ function checkForPair(checkPair){
     console.log('Par');
     let newPair = 'pair';
     pair.push(newPair);
-    if (pair.length === 3) {
+    if (pair.length === cards.length/2) {
 setTimeout(function () {
+    checkPair = [];
+    pair = [];
       gameOver();
         }, 1000);
     }
@@ -170,6 +173,15 @@ function gameOver(){
   //erase old gameboard
   //New game function
 
+newGame();
+}
+
+function newGame(){
+let newGameBoard = document.querySelector('.game-board');
+while (newGameBoard.firstChild) {
+    newGameBoard.removeChild(newGameBoard.firstChild);
+}
+numberOfCards(6);
 }
 
 numberOfCards(6);
