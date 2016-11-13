@@ -3,14 +3,40 @@
 }
 
 body{
-  background-image: url(img/green-whool.jpg);
-flex: display;
-
-}
-
-section{
+  background-image: url(img/wood.jpg);
+margin: 0 auto;
 margin: 0 auto;
 }
+
+
+header{
+  width: 100%;
+  /*margin: 0 auto;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header img{
+  width: 782px;
+  height: 471px;
+  display: block;
+    /*margin: 0 auto;*/
+box-shadow: none;
+
+}
+
+.game-board{
+  width: 760px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-flow: row wrap;
+}
+
+
 
 .flip {
   -webkit-perspective: 800;
@@ -18,8 +44,8 @@ margin: 0 auto;
    height: 200px;
     position: relative;
     margin: 25px auto;
-    float: left;
-    margin-right: 25px;
+    /*float: left;*/
+    margin: 25px;
 }
 .flip .card.flipped {
   -webkit-transform: rotatex(-180deg);
@@ -68,8 +94,6 @@ img{
 width: 146px;
 height: 200px;
 margin-right: 5px;
-}
+box-shadow: 5px 5px 2px #222323;
 
-.spotify{
-clear: both; 
 }
