@@ -3,13 +3,13 @@ let cardImg;
 let cardBack;
 let value;
 let cardId;
-let cards = [];
-let pair = [];
-let cardsFlipped = [];
-let checkPair = [];
+let cards = []; // holds the card objects
+let pair = []; // holds all the pairs from the game
+let cardsFlipped = []; // holds 2 variables (the flipped cards)
+let checkPair = []; // holds 2 variabls (the card value)
 
 
-
+//creating a car object
 function creatCard(cards, cardImg, cardBack, value, cardId){
   let card = {};
   card.cardImg = '';
@@ -21,7 +21,7 @@ function creatCard(cards, cardImg, cardBack, value, cardId){
 }
 
 
-
+//creating an array of card objects
 function numberOfCards(newCards){
   cards = [];
   for (var i = 0; i < newCards; i++) {
@@ -31,7 +31,7 @@ function numberOfCards(newCards){
 }
 
 
-
+//adding values to the card objects in the cards array
 function addValues(cards, newCards){
   let value = 0;
   for (var i = 0; i < cards.length; i++) {
@@ -47,6 +47,8 @@ function addValues(cards, newCards){
   mixCards(cards);
 }
 
+//mixing the array index, had to look online to get this.
+//I do not totaly understand how it works
 function mixCards(cards){
   for (let i = cards.length; i; i--) {
     let j = Math.floor(Math.random() * i);
@@ -55,7 +57,7 @@ function mixCards(cards){
   putCardsOnTable(cards);
 }
 
-
+//Creating dom elements to hold the card objects values
 function putCardsOnTable(cards){
   for (var i = 0; i < cards.length; i++) {
     let imgBack = document.createElement('img');
@@ -86,16 +88,18 @@ function putCardsOnTable(cards){
   game();
 }
 
+//This function is waiting for user click on the cards
+//
 function game(){
   if(checkPair.length < 2) {
 
-let playerClicks = document.querySelectorAll('.flip');
-// .forEach((playerClick)=>{
-// console.log(playerClick);
-//       playerClick.addEventListener('click', onClick);
-//     });
+    let playerClicks = document.querySelectorAll('.flip');
+    // .forEach((playerClick)=>{
+    // console.log(playerClick);
+    //       playerClick.addEventListener('click', onClick);
+    //     });
     for (var i = 0; i < playerClicks.length; i++) {
-    console.log(playerClicks[i]);
+      console.log(playerClicks[i]);
       playerClicks[i].addEventListener('click', onClick);
     }
   } else {
@@ -105,14 +109,16 @@ let playerClicks = document.querySelectorAll('.flip');
 
 }
 
-
+//This is the click event from the game function
+//it flips the card whene clicked
+//I have a problem here, if the user clicks a turnd card twice
+//the code breaks
 function onClick(event){
-console.log(event);
+  // console.log(event);
   let cardValue = event.target.dataset.value;
   let x = event.target.id;
-  let y = document.getElementById(x);
   cardsFlipped.push(x);
-  console.log(cardsFlipped);
+  // console.log(cardsFlipped);
   let z = document.getElementById("card" + x);
   let v = z.querySelector('.card');
   v.className += ' flipped';
@@ -141,47 +147,57 @@ console.log(event);
   //fix problem with card when clicked and turnd
 
 
-  console.log(x);
-  console.log('click');
+  // console.log(x);
+  // console.log('click');
   game();
 }
 
-
+//This function checks for pair
+//
 function checkForPair(checkPair){
   //console.log(checkPair);
   if (checkPair[0] === checkPair[1]) {
-    console.log('Par');
+    // console.log('Par');
     let newPair = 'pair';
     pair.push(newPair);
     if (pair.length === cards.length/2) {
-setTimeout(function () {
-    checkPair = [];
-    pair = [];
-      gameOver();
-        }, 1000);
+      setTimeout(function () {
+        checkPair = [];
+        pair = [];
+        gameOver();
+      }, 1000);
     }
-  }else {
-    console.log('inte par');
   }
-
-
+  // else {
+  //   //console.log('inte par');
+  // }
 }
 
+//when the pairs array is full
+//The game is over and displays the play button agin
 function gameOver(){
   alert('You won!');
-  //TODO
-  //erase old gameboard
-  //New game function
+  let show = document.querySelector('.start-game');
+  show.style.display = 'block'
+
+  newGame();
+}
+
+//this is the start function
+//it waits for user cklick and then adds the game-board
+function newGame(){
+  let newGameBoard = document.querySelector('.game-board');
+  while (newGameBoard.firstChild) {
+    newGameBoard.removeChild(newGameBoard.firstChild);
+  }
+  let start = document.querySelector('.start');
+  start.addEventListener('click', (event) => {
+    let hide = document.querySelector('.start-game');
+    hide.style.display = 'none'
+    numberOfCards(6);
+  });
+
+}
+
 
 newGame();
-}
-
-function newGame(){
-let newGameBoard = document.querySelector('.game-board');
-while (newGameBoard.firstChild) {
-    newGameBoard.removeChild(newGameBoard.firstChild);
-}
-numberOfCards(6);
-}
-
-numberOfCards(6);
