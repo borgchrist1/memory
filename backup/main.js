@@ -40,8 +40,8 @@ function addValues(cards, newCards){
     }
     cards[i].value = value;
     cards[i].cardId = i+1;
-    cards[i].cardBack = 'img/card-back3.png';
-    cards[i].cardImg = "img/card-img-" + value + ".jpg";
+    cards[i].cardBack = 'img/card-back3.png'
+    cards[i].cardImg = "url('img/card-img-" + value + ".jpg')"
   }
   mixCards(cards);
 }
@@ -58,35 +58,20 @@ function mixCards(cards){
 function putCardsOnTable(cards){
   for (var i = 0; i < cards.length; i++) {
     let imgBack = document.createElement('img');
-    let imgFront = document.createElement('img');
-    let divFlip = document.createElement('div');
-    let divCard = document.createElement('div');
-    let divFront = document.createElement('div');
-    let divBack = document.createElement('div');
+    let div = document.createElement('div');
     var section = document.querySelector("section");
-    imgFront.setAttribute('data-value', cards[i].value);
-    imgBack.src = cards[i].cardImg;
-    imgFront.src = cards[i].cardBack;
-    imgFront.setAttribute('id', cards[i].cardId);
-    divFlip.setAttribute('id', "card" + cards[i].cardId);
-    //divFront.setAttribute('id', cards[i].cardId);
-    divFlip.className = 'flip';
-    divCard.className = 'card';
-    divFront.className = 'face front';
-    divBack.className = 'face back';
-    section.appendChild(divFlip);
-    divFlip.appendChild(divCard);
-    divCard.appendChild(divFront);
-    divCard.appendChild(divBack);
-    divFront.appendChild(imgFront);
-    divBack.appendChild(imgBack);
+    imgBack.setAttribute('data-value', cards[i].value);
+    imgBack.src = cards[i].cardBack;
+    imgBack.setAttribute('id', cards[i].cardId);
+    section.appendChild(div);
+    div.appendChild(imgBack);
   }
   game();
 }
 
 function game(){
   if(checkPair.length < 2) {
-    let playerClicks = document.querySelectorAll('.flip');
+    let playerClicks = document.querySelectorAll('img');
     playerClicks.forEach(function(playerClick){
       playerClick.addEventListener('click', onClick);
     });
@@ -100,17 +85,9 @@ function game(){
 
 function onClick(event){
   let cardValue = event.toElement.dataset.value;
+  //console.log(event);
   let x = event.target.id;
   let y = document.getElementById(x);
-  let z = document.getElementById("card" + x);
-  let v = z.querySelector('.card');
-  v.className += ' flipped';
-  // event = document.querySelector('.card');
-  // event.className += ' flipped';
-  v.addEventListener('mouseleave', (a) => {
-      var g = document.querySelector('.card');
-      g.className = 'card';
-  });
 
   // TODO
   //get id to check that it is not the same card agin
