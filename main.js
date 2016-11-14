@@ -194,7 +194,7 @@ function newGame(){
   start.addEventListener('click', (event) => {
     let hide = document.querySelector('.start-game');
     hide.style.display = 'none'
-    numberOfCards(6);
+    numberOfCards(8);
   });
 
 }

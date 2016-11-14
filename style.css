@@ -17,8 +17,8 @@ header{
 }
 
 header img{
-  width: 782px;
-  height: 471px;
+  width: 587px;
+  height: 353px;
   display: block;
   box-shadow: none;
 }
@@ -30,7 +30,7 @@ section{
 
 
 .game-board{
-  width: 760px;
+  width: 800px;
   margin: 0 auto;
   display: flex;
   align-items: center;
