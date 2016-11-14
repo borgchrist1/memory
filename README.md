@@ -7,5 +7,7 @@ There is two bugs that I know of now.
 * When finished a game there is a div displayed with play again option it will appear in the wrong place
 ## Capability
 Works in Chrome v.54 and Firefox v.49. I have not tested it on earlier versions, so might not work there.
+
+
 ### Screenshot
 ![Alt text](img/screeshot.jpg)
