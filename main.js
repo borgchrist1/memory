@@ -99,7 +99,7 @@ function game(){
     //       playerClick.addEventListener('click', onClick);
     //     });
     for (var i = 0; i < playerClicks.length; i++) {
-      //console.log(playerClicks[i]);
+      console.log(playerClicks[i]);
       playerClicks[i].addEventListener('click', onClick);
     }
   } else {
@@ -186,18 +186,20 @@ function gameOver(){
 //this is the start function
 //it waits for user cklick and then adds the game-board
 function newGame(){
-  let newGameBoard = document.querySelector('.game-board');
-  while (newGameBoard.firstChild) {
+let newGameBoard = document.querySelector('.game-board');
+while (newGameBoard.firstChild) {
     newGameBoard.removeChild(newGameBoard.firstChild);
-  }
-  let start = document.querySelector('.start');
-  start.addEventListener('click', (event) => {
-    let hide = document.querySelector('.start-game');
-    hide.style.display = 'none'
-    numberOfCards(8);
-  });
 
 }
+let start = document.querySelector('.start');
+start.addEventListener('click', addcards);
+}
 
-
+function addcards(){
+  let hide = document.querySelector('.start-game');
+  hide.style.display = 'none';
+  console.log('hej')
+  numberOfCards(8);
+}
+//console.log('about to start');
 newGame();
