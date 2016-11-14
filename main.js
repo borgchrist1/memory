@@ -117,8 +117,12 @@ function onClick(event){
   // console.log(event);
   let cardValue = event.target.dataset.value;
   let x = event.target.id;
+if (x === ""){
+
+}else{
   cardsFlipped.push(x);
   // console.log(cardsFlipped);
+
   let z = document.getElementById("card" + x);
   let v = z.querySelector('.card');
   v.className += ' flipped';
@@ -136,6 +140,7 @@ function onClick(event){
         let card12 = card2.querySelector('.card');
         card12.className = 'card';
         cardsFlipped = [];
+
       }, 1000);
 
     }
@@ -143,6 +148,7 @@ function onClick(event){
       cardsFlipped = [];
     }
   }
+}
   // TODO
   //fix problem with card when clicked and turnd
 
@@ -198,8 +204,8 @@ function newGame(){
 function addcards(){
   let hide = document.querySelector('.start-game');
   hide.style.display = 'none';
-  console.log('hej')
-  numberOfCards(8);
+  //console.log('hej')
+  numberOfCards(16);
 }
 //console.log('about to start');
 newGame();
