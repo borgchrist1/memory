@@ -99,7 +99,7 @@ function game(){
     //       playerClick.addEventListener('click', onClick);
     //     });
     for (var i = 0; i < playerClicks.length; i++) {
-      console.log(playerClicks[i]);
+      //console.log(playerClicks[i]);
       playerClicks[i].addEventListener('click', onClick);
     }
   } else {
